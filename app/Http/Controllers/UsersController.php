@@ -70,7 +70,7 @@ class UsersController extends Controller
          $user->loadRelationshipCounts();
          
          // ユーザのフォロワー一覧を取得
-         $followers = $user->follwers()->paginate(10);
+         $followers = $user->followers()->paginate(10);
          
          // フォロワー一覧ビューでそれらを表示
          return view('users.followers', [
