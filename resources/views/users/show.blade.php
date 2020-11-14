@@ -14,7 +14,7 @@
         @include('microposts.form')
       @endif
       {{-- 投稿一覧 --}}
-      @include('microposts.form')
+      @include('microposts.microposts')
     </div>
   </div>
 @endsection
