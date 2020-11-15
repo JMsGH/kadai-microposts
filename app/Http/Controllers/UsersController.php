@@ -78,5 +78,29 @@ class UsersController extends Controller
             'users' => $followers,
         ]);
      }
-    
+     
+        /** ユーザのお気に入り投稿の一覧ページを表示するアクション
+          * 
+          * @param $id ユーザのid
+          * @return \Illumiate\Http\Response
+          */
+         public function favorites($id)
+         {
+
+            $user = \Auth::user();
+            
+            // 関係するモデルの件数をロード
+            $user->loadRelationshipCounts();
+            
+             // ユーザのお気に入り投稿の一覧を作成日時の降順で取得
+             $microposts = $user->favorites()->orderBy('created_at', 'desc')->paginate (10);
+
+             return view('users.favorites', [
+                'user' => $user,
+                'microposts' => $microposts,
+                'id' => $user->id,
+            ]);
+        }
+      
+
 }
